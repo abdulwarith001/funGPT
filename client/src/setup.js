@@ -7,17 +7,11 @@ const Setup = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        fetch('/chatbot', {
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({query})
-        }).then((res) => res.json()).then((data) => setBotResponse(data.message))
+        const response = await axios.post("/chatbot", {query})
+        const message = response.data.message
+        setBotResponse(message)
         setQuery('')
     }
-
-    // useEffect(handleSubmit(), [])
 
   return (
     <section>
