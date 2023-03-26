@@ -7,7 +7,7 @@ const Setup = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        fetch('http://localhost:8000/chatbot', {
+        fetch('/chatbot', {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
