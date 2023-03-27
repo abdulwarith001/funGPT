@@ -46,7 +46,6 @@ try {
         return res.status(200).json({ message: `${botResponse}` });
 } catch (error) {
     res.status(400).json({message: "Could not connect"})
-    console.log(error, 'could not connect')
 }
 })
 
