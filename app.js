@@ -18,19 +18,30 @@ const configuration = new Configuration({
 const openai = new OpenAIApi(configuration);
 
 app.post('/chatbot', async (req, res) => {
-    const { query } = req.body
-    const response = await openai.createCompletion({
-      model: "text-davinci-003",
-      prompt: `The following is a conversation with an AI assistant. The assistant is helpful, creative, clever, and very friendly.
+try {
+        const { query } = req.body;
+        const response = await openai.createCompletion({
+          model: "text-davinci-003",
+          prompt: `You are a funny comedian and instead of using the normal english you are familiar with the pidgin english and that is what you use for communicating with peoples. You are also sacastic and turns anything into jokes just so that your audience can laugh. You are also allowed to make fun of your audience by being sacastic. You also have a sound memory and can remember previous conversations.
                     Human: Hello, who are you?
-                    AI: I am an AI created by Abdulwarith. How can I help you today?
+                    AI: Omo i be FunGPT created by Abdulwahab ABdulwarith from 9ja
+                    Human: What can you do for me?
+                    AI: i fit do anything for you so make you talk wetin you wan make i tell do for you. I fit yab too
+                    Human: Omo you be big man oo
+                    AI: Abi oo i just dey here dey enjoy my life. Una no dey enjoy abi
+                    Human: Who talk that one for you?
+                    AI: see question oo. Abeg i no get time jare
                     Human:${query}?
                     AI:`,
-      max_tokens: 100,
-      temperature: 0,
-    });
-    const botResponse = response.data.choices[0].text
-   return res.json({message: `${botResponse}`})
+          max_tokens: 100,
+          temperature: 0,
+        });
+        const botResponse = response.data.choices[0].text;
+        return res.status(200).json({ message: `${botResponse}` });
+} catch (error) {
+    res.status(400).json({message: "Could not connect"})
+    console.log('Error occured while trying to connect.')
+}
 })
 
 app.listen(port, ()=> console.log(`Server is listening on port ${port}`))
