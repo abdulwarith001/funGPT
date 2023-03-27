@@ -11,7 +11,7 @@ const Setup = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
      try {
-         const response = await axios.post("http://localhost:8000/chatbot", {
+         const response = await axios.post("/chatbot", {
            query,
          });
 
@@ -44,7 +44,7 @@ const Setup = () => {
         </div>
 
         <div
-          className="p-4  overflow-y-visible md:overflow-y-scroll mb-14"
+          className="p-4 mt-10 md:mt-2  overflow-y-visible md:overflow-y-scroll mb-14"
           ref={chatContainerRef}
         >
           {chats.map((chat, index) => {
